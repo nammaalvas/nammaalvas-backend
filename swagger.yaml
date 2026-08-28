@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  title: AIET Verse Backend API
+  description: Production-ready API documentation for AIET admissions, contacts, and appointments.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+paths:
+  /api/health:
+    get:
+      summary: Check system health
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  timestamp:
+                    type: string
+  /api/admission:
+    post:
+      summary: Submit seat booking request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - phone
+                - course
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                course:
+                  type: string
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Validation error
+        '409':
+          description: Duplicate entry
+  /api/contact:
+    post:
+      summary: Submit contact form message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - message
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                message:
+                  type: string
+      responses:
+        '201':
+          description: Message received
+        '429':
+          description: Too many requests
+  /api/appointment:
+    post:
+      summary: Schedule an offline or online appointment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - phone
+                - type
+                - date
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                type:
+                  type: string
+                  enum: [offline, online]
+                date:
+                  type: string
+                  example: 2026-08-01
+                desk:
+                  type: string
+                course:
+                  type: string
+      responses:
+        '201':
+          description: Appointment Scheduled

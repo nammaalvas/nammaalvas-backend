@@ -1,0 +1,103 @@
+{
+  "info": {
+    "name": "AIET Backend API",
+    "description": "Postman collection for AIET Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "health"]
+        }
+      }
+    },
+    {
+      "name": "Submit Admission Booking",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"9876543210\",\n  \"course\": \"CSE\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/admission",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "admission"]
+        }
+      }
+    },
+    {
+      "name": "Submit Contact Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jane Smith\",\n  \"email\": \"jane@example.com\",\n  \"message\": \"I have a query regarding placements.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/contact",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "contact"]
+        }
+      }
+    },
+    {
+      "name": "Schedule Offline Appointment",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\",\n  \"phone\": \"1234567890\",\n  \"type\": \"offline\",\n  \"desk\": \"Principal\",\n  \"date\": \"2026-08-15\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/appointment",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "appointment"]
+        }
+      }
+    },
+    {
+      "name": "Schedule Online Appointment",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Bob\",\n  \"email\": \"bob@example.com\",\n  \"phone\": \"0987654321\",\n  \"type\": \"online\",\n  \"course\": \"MBA\",\n  \"date\": \"2026-08-16\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/appointment",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "appointment"]
+        }
+      }
+    }
+  ]
+}

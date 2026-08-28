@@ -1,0 +1,40 @@
+# AIET Backend
+
+This is the production-ready backend for the AIET Website. It is built using Node.js, Express.js, and MongoDB (via Mongoose).
+
+## Architecture
+
+The project follows a standard MVC (Model-View-Controller) structure:
+- **`config/`**: Configuration files (e.g., Database, Swagger).
+- **`models/`**: Mongoose schemas modeling the MongoDB documents.
+- **`controllers/`**: Core logic for handling incoming API requests.
+- **`routes/`**: Express routers connecting URLs to the appropriate controllers.
+- **`middleware/`**: Centralized logic for Request Validation, Error Handling, and Rate Limiting.
+- **`validators/`**: Rules defined using `express-validator` to ensure data integrity.
+
+## Prerequisites
+- Node.js installed on your machine.
+- MongoDB installed and running locally, or a MongoDB Atlas URI.
+
+## Installation & Setup
+
+1. Open a terminal in this directory.
+2. Run `npm install` to install all dependencies.
+3. The `.env` file is already created. If you need to change anything, refer to `.env.example`.
+4. Make sure MongoDB is running on your machine (e.g., starting MongoDB service).
+5. Run the server using `npm run dev`.
+
+The server will start on `http://localhost:5000`.
+
+## Features
+- **ES Modules**: Fully modernized using `import`/`export`.
+- **Validation**: Strict body validation for all POST requests.
+- **Security**: Implementation of Helmet, express-rate-limit, and compression. CORS is locked down to `http://localhost:5173`.
+- **Duplicate Protection**:
+  - Admissions: Rejects duplicate emails+phone+course combinations.
+  - Contact Form: Rejects duplicate submissions from the same email within 60 seconds.
+- **Sequential Tokens**: The Appointment booking uses atomic sequential MongoDB counters to safely generate tokens like `AIET-2026-P001` instead of random generation.
+
+## Documentation
+- **Swagger**: Once the server is running, navigate to `http://localhost:5000/api-docs` to view and test all endpoints visually.
+- **Postman**: Import `aiet-backend-postman-collection.json` into Postman for immediate testing capabilities.
