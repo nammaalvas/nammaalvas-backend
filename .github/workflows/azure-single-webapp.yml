@@ -11,8 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Backend Repository
         uses: actions/checkout@v4
+        with:
+          path: backend
+
+      - name: Checkout Frontend Repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'nammaalvas/nammaalvas-frontend'
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          path: frontend
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -21,17 +30,18 @@ jobs:
 
       - name: Build Frontend
         run: |
-          cd ../Aiet-Verse-Frontend || cd Aiet-Verse-Frontend || cd ../*Frontend*
+          cd frontend
           npm ci
           npm run build
 
       - name: Bundle Frontend into Backend
         run: |
-          mkdir -p public_dist
-          cp -r ../Aiet-Verse-Frontend/dist/* ./public_dist/ || cp -r ./Aiet-Verse-Frontend/dist/* ./public_dist/
+          mkdir -p backend/public_dist
+          cp -r frontend/dist/* backend/public_dist/
 
       - name: Install Backend Production Dependencies
         run: |
+          cd backend
           npm ci --only=production
 
       - name: Deploy to Azure Web App
@@ -39,4 +49,4 @@ jobs:
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME || 'aiet-verse-app' }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: .
+          package: ./backend
