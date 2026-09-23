@@ -4,6 +4,10 @@ info:
   description: Production-ready API documentation for AIET admissions, contacts, and appointments.
   version: 1.0.0
 servers:
+  - url: /
+    description: Current host (Azure Production)
+  - url: https://nammaalvasbackend-e5graxdnaderdrcx.centralindia-01.azurewebsites.net
+    description: Azure App Service Production
   - url: http://localhost:5000
     description: Local development server
 paths:
