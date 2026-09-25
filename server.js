@@ -39,7 +39,10 @@ const app = express();
 app.set('trust proxy', 1);
 
 // Security and Optimization Middlewares
-app.use(helmet({ contentSecurityPolicy: false }));
+app.use(helmet({
+  contentSecurityPolicy: false,
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 app.use(compression());
 app.use(cookieParser());
 app.use(express.json());
